@@ -8,6 +8,6 @@
 
  require 'csv'
 
-  CSV.foreach('db/seeds/fruit.csv')  do |row|
+  CSV.foreach('db/seeds/fruits.csv')  do |row|
     Product.create( {name: row[0], price: row[1]} )
   end
