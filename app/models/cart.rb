@@ -1,7 +1,8 @@
 class Cart < ActiveRecord::Base
 #attr_accessible :title, :body
 
-  has_many :lineitems
+
+  has_many :line_items
 
   def total_cents
     #total = 0
