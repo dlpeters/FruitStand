@@ -15,7 +15,7 @@ class CartsController < ApplicationController
     if @line_item = @cart.line_items.find_by_product_id(@product)
       @line_item.quantity += 1
     else
-      @line_item = @cart.Line_items.new(product: @product, quantity: 1)
+      @line_item = @cart.line_items.new(product: @product, quantity: 1)
     end
 
     if @line_item.save
@@ -24,7 +24,7 @@ class CartsController < ApplicationController
       flash[:error] = "Problem adding to cart"
     end
 
-    redirect root_path
+    redirect_to root_path
   end
 
   def remove
