@@ -1,3 +1,24 @@
+<h1>Your cart</h1>
+
+<table border="1">
+  <tr>
+    <td>product</td>
+    <td>quantity</td>
+    <td>price</td>
+
+  </tr>
+
+  <% @cart.line_items.each do |line_item| %>
+
+       <tr>
+         <td><%= line_item.product.name%></td>
+         <td><%= line_item.quantity%></td>
+         <td><%= line_item.price%></td>
+       </tr>
+  <%end%>
+
+</table>
+
 <h1>Listing products</h1>
 
 <table>
@@ -9,7 +30,7 @@
     <th></th>
   </tr>
 
-<% @products.each do |product| %>
+  <% @products.each do |product| %>
   <tr>
     <td><%= product.name %></td>
     <td><%= product.price %></td>

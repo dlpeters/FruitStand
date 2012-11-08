@@ -1,7 +1,5 @@
 class CartsController < ApplicationController
-  def index
-  end
-
+ #add item to cart
   def add
     if session[:cart_id] == nil
       @cart = Cart.create
@@ -23,7 +21,6 @@ class CartsController < ApplicationController
     else
       flash[:error] = "Problem adding to cart"
     end
-
     redirect_to root_path
   end
 
