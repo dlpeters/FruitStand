@@ -1,5 +1,14 @@
 class CartsController < ApplicationController
  #add item to cart
+
+  def show
+    if session[:cart_id]
+      @cart = Cart.find(session[:card_id])
+    else
+      @cart = Cart.create
+    end
+  end
+
   def add
     if session[:cart_id] == nil
       @cart = Cart.create
@@ -25,9 +34,25 @@ class CartsController < ApplicationController
   end
 
   def remove
+    @cart = Cart.find(session[:cart_id])
+    @line_item = @cart.line_items.find(params[:id])
+    if @line_item.destroy
+      flash[:notice] = "#{@line_item.product.name} removed from cart"
+    end
+    redirect_to root_path
   end
 
   def checkout
+    @cart = Cart.find(session[:cart_id])
+   # @order = Order.create
+   # @cart.line_items.each do |line_item|
+   #   @order.line_items << LineItem.new({product: line_item.product, quantity: line_item.q})
+   # end
+    #@order.save
+    #if order.bill
+
+   # end
+
   end
 
   def thankyou

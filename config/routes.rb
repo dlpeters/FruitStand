@@ -3,7 +3,7 @@ FruitStand::Application.routes.draw do
 
   get "carts/add/:id" => "carts#add", :as => :adding_to_the_cart
 
-  get "carts/remove"
+  get "carts/remove/:id"  => "carts#remove",  :as => :remove_from_the_cart
 
   get "carts/checkout"
 
