@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     if session[:cart_id] == nil
-      @cart = Cart.create
+      @cart = Cart.create!
       session[:cart_id] = @cart.id
     else
       @cart = Cart.find(session[:cart_id])

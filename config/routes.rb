@@ -1,4 +1,6 @@
 FruitStand::Application.routes.draw do
+  get "users/new"
+
   get "carts/index"
 
   get "carts/add/:id" => "carts#add", :as => :adding_to_the_cart
@@ -8,6 +10,12 @@ FruitStand::Application.routes.draw do
   get "carts/checkout"
 
   get "carts/thankyou"
+
+  Auth::Application.routes.draw do
+    get "sign_up" => "users#new", :as => "sign_up"
+    root :to => "users#new"
+    resources :users
+  end
 
   resources :products
 

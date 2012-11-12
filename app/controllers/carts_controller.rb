@@ -44,15 +44,27 @@ class CartsController < ApplicationController
 
   def checkout
     @cart = Cart.find(session[:cart_id])
-   # @order = Order.create
-   # @cart.line_items.each do |line_item|
-   #   @order.line_items << LineItem.new({product: line_item.product, quantity: line_item.q})
-   # end
-    #@order.save
-    #if order.bill
 
-   # end
+    #automatically calls the file in the models directory when .create
+    @order = Order.create!
 
+    @cart.line_items.each do |line_item|
+      @order.line_items << LineItem.new({product: line_item.product, quantity: line_item.quantity})
+    end
+    @order.save
+
+    if @order.bill
+      # assumes order can be successfully bill
+      if @cart.destroy
+        session[:cart_id] = nil
+      end
+      if OrderMailer.complete(@order).deliver
+        flash[notice] = "an email has been sent ..."
+      end
+
+    end
+    flash[:notice] = "Checkout was successful!"
+    redirect_to root_path
   end
 
   def thankyou
