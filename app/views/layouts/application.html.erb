@@ -8,12 +8,13 @@
 </head>
 <body>
 
-<% if flash[:notice] %>
-    <p class="notice"><%= flash[:notice] %></p>
+
+
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash#{name}" %>
 <% end %>
-<% if flash[:error] %>
-    <p class="error"><%= flash[:error] %></p>
-<% end %>
+
+
 
 <%= yield %>
 
