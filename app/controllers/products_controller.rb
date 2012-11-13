@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @product }
     end
+
   end
 
   # GET /products/1/edit

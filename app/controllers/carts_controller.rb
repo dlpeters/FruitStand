@@ -9,6 +9,17 @@ class CartsController < ApplicationController
     end
   end
 
+
+  def index
+    if session[:cart_id] == nil
+      @cart = Cart.create
+    else
+      @cart = Cart.find(session[:cart_id])
+    end
+
+  end
+
+
   def add
     if session[:cart_id] == nil
       @cart = Cart.create
@@ -30,7 +41,7 @@ class CartsController < ApplicationController
     else
       flash[:error] = "Problem adding to cart"
     end
-    redirect_to root_path
+    redirect_to carts_index_path
   end
 
   def remove
